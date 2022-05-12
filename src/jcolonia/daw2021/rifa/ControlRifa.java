@@ -13,7 +13,17 @@ import java.util.Vector;
 public class ControlRifa {
 	private List<Fetiche> listaFetiches;
 //	- listaFetiches: List<String>
-
+	
+/**
+ * El número de intentos totales.
+ */
+	private int númIntentos;
+	
+	/**
+	 * El número de aciertos.
+	 */
+	private int númAciertos;
+	
 	private Scanner entrada;
 //	- entrada: Scanner
 
@@ -69,6 +79,7 @@ public class ControlRifa {
 
 		int opción;
 		String mensaje;
+		
 
 		vistaSorteo = new VistaMenúBásico("Pedir boleto", entrada, Fetiche.nombres());
 
@@ -79,18 +90,33 @@ public class ControlRifa {
 		objetoElegido = Fetiche.values()[opción - 1];
 		objetoGanador = Fetiche.sortear();
 
+
 		mensaje = String.format("   ** ¡Ha salido «%s»!", objetoGanador);
 		Vista.mostrarTexto(mensaje);
 
 		if (objetoElegido == objetoGanador) {
 			mensaje = "   ** ¡Mala suerte le llueve a tu compañero!";
+			númIntentos++;
+			númAciertos++;
 		} else {
 			mensaje = "   ** ¡Suerte que te libraste!";
+			númIntentos++;
 		}
+		
+		String textoFinal;
+		textoFinal = String.format("Ha tenido un total de %d aciertos sobre %d intentos", númAciertos,númIntentos);
+		
 		Vista.mostrarTexto(mensaje);
+		
+		//Los aciertos conseguidos.
+		Vista.mostrarTexto(textoFinal);
 
 		vistaSorteo.pedirContinuar();
 	}
+	/**
+	 * Muestra los últimos objetos ganadores.
+	 */
+
 
 	public void operaciónNoImplementada() {
 		Vista.mostrarTexto(" --> Operación no implementada todavía…\n");
@@ -104,6 +130,7 @@ public class ControlRifa {
 
 		control.buclePrincipal();
 		entrada.close();
+		
 	}
 //	+ {static} main(argumentos: String[]): void
 

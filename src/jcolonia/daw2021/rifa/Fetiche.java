@@ -11,6 +11,8 @@ import java.util.Random;
  * @version 1.0 (20220510)
  */
 public enum Fetiche {
+	
+	
 	/** El diablo tuerto. */
 	DIABLO_TUERTO,
 	/** El gato negro. */
@@ -26,6 +28,11 @@ public enum Fetiche {
 	 * @see #toString()
 	 */
 	static String[] listaNombres;
+	
+	/**
+	 * El número aleatorio 
+	 */
+	static Random generador = new Random();
 
 	/**
 	 * Devuelve el nombre del objeto en un formato limpio.<div>Ejemplo:
@@ -63,8 +70,8 @@ public enum Fetiche {
 	public static Fetiche sortear() {
 		
 		int posiciónSorteada;
-		Random generador = new Random();
-		posiciónSorteada = generador.nextInt(4);
+
+		posiciónSorteada = generador.nextInt(Fetiche.values().length);
 		
 		return Fetiche.values()[posiciónSorteada];
 		
