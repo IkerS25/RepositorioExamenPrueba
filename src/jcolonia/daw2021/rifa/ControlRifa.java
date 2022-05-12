@@ -89,6 +89,7 @@ public class ControlRifa {
 
 		objetoElegido = Fetiche.values()[opción - 1];
 		objetoGanador = Fetiche.sortear();
+		listaFetiches.add(objetoGanador);
 
 
 		mensaje = String.format("   ** ¡Ha salido «%s»!", objetoGanador);
@@ -104,10 +105,9 @@ public class ControlRifa {
 		}
 		
 		String textoFinal;
-		textoFinal = String.format("Ha tenido un total de %d aciertos sobre %d intentos", númAciertos,númIntentos);
-		
+		textoFinal = String.format("%nHa tenido un total de %d aciertos sobre %d intentos", númAciertos,númIntentos);
 		Vista.mostrarTexto(mensaje);
-		
+		mostrarHistórico();
 		//Los aciertos conseguidos.
 		Vista.mostrarTexto(textoFinal);
 
@@ -116,7 +116,15 @@ public class ControlRifa {
 	/**
 	 * Muestra los últimos objetos ganadores.
 	 */
-
+	public void mostrarHistórico() {
+		System.out.println("");
+		System.out.println("Históricos de sorteo");
+		System.out.println("--------------------");
+		for(Fetiche tipo: listaFetiches) {
+			
+			System.out.println(tipo);
+		}
+}
 
 	public void operaciónNoImplementada() {
 		Vista.mostrarTexto(" --> Operación no implementada todavía…\n");
